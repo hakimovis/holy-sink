@@ -1,0 +1,37 @@
+!!! 5
+%html(lang="en")
+%html
+%head
+  %meta(charset="utf-8")
+  %meta(http-equiv="X-UA-Compatible" content="IE=edge")
+  %meta(name="viewport" content="width=device-width, initial-scale=1")
+  %meta(name="description" content="")
+  %meta(name="author" content="")
+  %title Starter Template for Bootstrap
+
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+  = javascript_include_tag 'application'
+  = csrf_meta_tags
+%body
+  %nav.navbar.navbar-expand-lg.bg-light
+    .container-fluid
+      %a.navbar-brand(href="#") Navbar
+      %button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
+        %span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbarNav
+        %ul.navbar-nav
+          %li.nav-item
+            %a.nav-link.active(aria-current="page" href="#") Home
+          %li.nav-item
+            %a.nav-link(aria-current="page" href="#") Features
+          %li.nav-item
+            %a.nav-link.disabled(aria-current="page" href="#") Disabled
+
+  %div.container
+    - flash.each do |name, msg|
+      = content_tag :div, class: "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
+        %button.close(type="button" data-dismiss="alert")
+          %span(aria-hidden="true") &times;
+          %span.sr-only Close
+        = msg
+    = yield

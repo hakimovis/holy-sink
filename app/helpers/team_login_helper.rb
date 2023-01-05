@@ -1,0 +1,2 @@
+module TeamLoginHelper
+end
