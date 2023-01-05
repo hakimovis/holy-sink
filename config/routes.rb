@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'team_login#index'
 
-  resources :team_login, only: [:index, :create]
+  resources :team_login, only: [:index, :create,] do
+    delete :index, on: :collection, action: :log_out
+  end
   resources :user_login
   resource :my_days
 end

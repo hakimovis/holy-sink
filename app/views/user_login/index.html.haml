@@ -2,7 +2,7 @@
   .col
     %h3 Выбрать юзера
     .ul
-      = User.find_each do |user|
+      = team_users.find_each do |user|
         .li
           %a{href: user_login_path(id: user.id) }
             = user.name

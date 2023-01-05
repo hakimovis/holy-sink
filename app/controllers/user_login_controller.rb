@@ -1,21 +1,15 @@
 class UserLoginController < ApplicationController
-  helper_method :user
+  helper_method :user, :team_users
 
   def index
   end
 
   def show
     render :index
-    # user = User.find_by(id: params.require(:id))
-    # redirect_to user_login_index_path, alert: "Нет такого юзера" unless user
-
-    # set_current_user(user)
-
-    # redirect_to user_login_index_path, notice: "Вход как юзер #{user.name}"
   end
 
   def create
-    user = User.find_or_initialize_by(name: form_params[:name])
+    user = User.find_or_initialize_by(name: form_params[:name], team_name: current_team[:name])
     user.save! if user.new_record?
     set_current_user(user)
 
@@ -34,9 +28,10 @@ class UserLoginController < ApplicationController
     params.require(:user).permit(:name)
   end
 
+  def team_users
+    User.where(team_name: current_team[:name])
+  end
+
   private
 
-  def set_current_user(user)
-    session[:current_user] = user
-  end
 end
