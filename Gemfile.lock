@@ -217,6 +217,8 @@ GEM
     regexp_parser (2.6.1)
     rexml (3.2.5)
     rubyzip (2.3.2)
+    russian (0.6.0)
+      i18n (>= 0.5.0)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -283,6 +285,7 @@ DEPENDENCIES
   jquery-rails
   puma (~> 6.0)
   rails (~> 7.0.4)
+  russian
   sassc-rails
   selenium-webdriver
   sprockets-rails

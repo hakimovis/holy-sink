@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     delete :index, on: :collection, action: :log_out
   end
   resources :user_login
-  resource :my_days
+  resources :my_days
 end

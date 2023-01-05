@@ -1,0 +1,18 @@
+.row
+  .col= link_to "Предыдущий месяц", my_days_path(month: prev_month_year[0], year: prev_month_year[1])
+  .col= "#{month_names[selected_days.first.month]} #{selected_days.first.year}"
+  .col= link_to "Следующий месяц", my_days_path(month: next_month_year[0], year: next_month_year[1])
+
+.table-responsive
+  %table.table
+    %tr
+      %th Дата
+      %th День недели
+      %th Статус
+      %th Комментарий
+    - selected_days.each do |date|
+      %tr
+        %td= date.day
+        %td= week_days[date.wday]
+        %td
+        %td

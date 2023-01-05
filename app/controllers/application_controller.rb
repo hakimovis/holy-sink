@@ -16,4 +16,12 @@ class ApplicationController < ActionController::Base
   def set_current_user(user)
     session[:current_user] = user
   end
+
+  def require_team!
+    redirect_to root_path unless current_team
+  end
+
+  def require_user!
+    redirect_to user_login_index_path unless current_team.present? && current_user.present?
+  end
 end

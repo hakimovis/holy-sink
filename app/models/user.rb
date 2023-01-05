@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  validates :name, presence: true
+  validates :team_name, presence: true
 end
 
 # == Schema Information

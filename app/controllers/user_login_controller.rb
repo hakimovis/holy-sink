@@ -1,19 +1,21 @@
 class UserLoginController < ApplicationController
   helper_method :user, :team_users
+  before_action :require_team!
 
   def index
   end
 
   def show
+    return redirect_to user_login_index_path if user.new_record?
     render :index
   end
 
   def create
-    user = User.find_or_initialize_by(name: form_params[:name], team_name: current_team[:name])
+    user = team_users.find_or_initialize_by(name: form_params[:name], team_name: current_team[:name])
     user.save! if user.new_record?
     set_current_user(user)
 
-    redirect_to user_login_index_path, notice: "Вы вошли как юзер #{user.name}"
+    redirect_to my_days_path, notice: "Вы вошли как юзер #{user.name}"
   end
 
   def update

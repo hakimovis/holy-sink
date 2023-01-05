@@ -21,10 +21,11 @@
         %span.navbar-toggler-icon
       .collapse.navbar-collapse#navbarNav
         %ul.navbar-nav
-          %li.nav-item
-            %a.nav-link(aria-current="page" href="#") Мои выходные
-          %li.nav-item
-            %a.nav-link(aria-current="page" href="#") Общий каледнарь
+          - if current_user
+            %li.nav-item
+              %a.nav-link(aria-current="page" href="#") Мои выходные
+            %li.nav-item
+              %a.nav-link(aria-current="page" href="#") Общий каледнарь
     - if current_team || current_user
       .container-fluid.justify-content-end
         %ul.navbar-nav
