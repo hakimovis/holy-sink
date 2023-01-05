@@ -1,1 +1,11 @@
-hello
+= form_for :team, url: team_login_index_path do |f|
+  .row
+    = f.label :team, "Выберите команду"
+  .row
+    = f.select :team, Settings.teams.map {|team| [team[:title], team[:name]] }
+  .row
+    = f.label :password, "Пароль"
+  .row
+    = f.password_field :password
+  .row
+    = f.submit "Отправить"

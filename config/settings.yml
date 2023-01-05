@@ -1,0 +1,5 @@
+teams:
+  -
+    name: default
+    title: Теплая вечеринка со смузи
+    password: "123"

@@ -1,0 +1,2 @@
+module MyDaysHelper
+end

@@ -8,6 +8,7 @@ gem "rails", "~> 7.0.4"
 gem "haml"
 gem 'bootstrap', '~> 5.2.2'
 gem 'jquery-rails'
+gem 'config'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -65,6 +66,7 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'annotate'
 end
 
 group :test do

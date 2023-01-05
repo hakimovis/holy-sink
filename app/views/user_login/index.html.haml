@@ -1,0 +1,17 @@
+.row
+  .col
+    %h3 Выбрать юзера
+    .ul
+      = User.find_each do |user|
+        .li
+          %a{href: user_login_path(id: user.id) }
+            = user.name
+  .col
+    %h3 Вход
+    = form_for user, url: '#' do |f|
+      .row
+        = f.label :name, "Имя"
+      .row
+        = f.text_field :name, placeholder: "Введите имя"
+      .row
+        = f.submit "Войти"

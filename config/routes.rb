@@ -3,5 +3,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  root "team_login#index"
+  root 'team_login#index'
+
+  resources :team_login, only: [:index, :create]
+  resources :user_login
+  resource :my_days
 end
