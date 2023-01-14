@@ -1,11 +1,15 @@
-= form_for :team, url: team_login_index_path do |f|
-  .row
-    = f.label :team, "Выберите команду"
-  .row
-    = f.select :team, Settings.teams.map {|team| [team[:title], team[:name]] }
-  .row
-    = f.label :password, "Пароль"
-  .row
-    = f.password_field :password
-  .row
-    = f.submit "Отправить"
+.row
+  %h3 Привет!
+.row
+  = form_for :team, url: team_login_index_path do |f|
+    .row
+      .input-group
+        = f.label :team, "Выберите команду", class: 'input-group-text'
+        = f.select :team, Settings.teams.map {|team| [team[:title], team[:name]] }, {}, {class: 'form-select'}
+    .row
+      .input-group
+        = f.label :password, "Пароль", class: 'input-group-text'
+        = f.password_field :password, class: 'form-control'
+    .row
+      .input-group
+        = f.submit "Отправить", class: 'form-control bg-light'

@@ -9,9 +9,8 @@
   .col
     %h3 Вход
     = form_for user, url: '#' do |f|
-      .row
-        = f.label :name, "Имя"
-      .row
-        = f.text_field :name, placeholder: "Введите имя"
-      .row
-        = f.submit "Войти"
+      .input-group
+        = f.label :name, "Имя", class: 'input-group-text'
+        = f.text_field :name, placeholder: "Введите имя", class: 'form-control'
+      .input-group
+        = f.submit "Войти", class: 'form-control bg-light'
