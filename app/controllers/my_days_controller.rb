@@ -1,48 +1,32 @@
 class MyDaysController < ApplicationController
-  helper_method :selected_days, :week_days, :month_names, :prev_month_year, :next_month_year
+  include DateSelector
+
+  helper_method :user_days
 
   def index
+    redirect_to my_days_path(year: current_year, month: current_month) unless valid_year? && valid_month?
   end
 
-  def selected_month
-    month = params[:month].to_i
-    valid_month?(month) ? month : Date.today.month
+  def create
+    date, status = parse_day_id(params.require('id'))
+    day = Day.find_or_initialize_by(user: current_user, team_name: current_team[:name], date: date)
+    day.date = date
+    day.status = status
+    day.save!
   end
 
-  def selected_year
-    year = params[:year].to_i
-    valid_year?(year) ? year : Date.today.year
+
+  def parse_day_id(day_id)
+    'day-20240108-free'
+    _, date_str, status = day_id.to_s.split('-')
+    date = Date.strptime(date_str, "%Y%m%d")
+    [date, status]
   end
 
-  def selected_days
-    first_date = Date.new(selected_year, selected_month, 1)
-    last_date = first_date.end_of_month
-    first_date..last_date
-  end
-
-  def valid_month?(month)
-    month.in?(1..12)
-  end
-
-  def valid_year?(year)
-    year.in?(2023..2024)
-  end
-
-  def week_days
-    I18n.t('date.day_names', format: "")
-  end
-
-  def month_names
-    I18n.t('date.month_names', format: "")
-  end
-
-  def prev_month_year
-    date = selected_days.first - 1.day
-    [date.month, date.year]
-  end
-
-  def next_month_year
-    date = selected_days.last + 1.day
-    [date.month, date.year]
+  def user_days
+    @_user_days ||= Day.for_user(current_user).
+                      for_team(current_team[:name]).
+                      for_month(selected_year, selected_month).
+                      index_by(&:date)
   end
 end

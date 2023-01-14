@@ -1,0 +1,30 @@
+%h3 Общий календарь
+
+.row.text-center
+  .col.btn
+    - if valid_year?(prev_month_year[1])
+      = link_to "Предыдущий месяц", team_days_path(month: prev_month_year[0], year: prev_month_year[1])
+  .col.btn= "#{month_names[selected_days.first.month]} #{selected_days.first.year}"
+  .col.btn
+    - if valid_year?(next_month_year[1])
+      = link_to "Следующий месяц", team_days_path(month: next_month_year[0], year: next_month_year[1])
+
+%p
+
+.row
+  - week_days(mon_first: true).each do |day_name|
+    .col.text-center.border.bg-light
+      = day_name
+
+- selected_days_by_weeks.each do |row|
+  .row
+    - row.each do |date|
+      .col.border
+        - if date
+          .row
+            .col
+              %h5= date.day
+            .col
+              - team_days_by_date.fetch(date, []).each do |days|
+                - Array.wrap(days).each do |day|
+                  = render('shared/day_badge', day: day)

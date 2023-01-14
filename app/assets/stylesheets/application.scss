@@ -1,2 +1,8 @@
 // @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.day-working { background-color: $yellow; }
+.day-free { background-color: $green; }
+.day-things { background-color: $gray-500; }
+.day-other { background-color: $cyan; }
+

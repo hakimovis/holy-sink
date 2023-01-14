@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   end
   resources :user_login
   resources :my_days
+  resources :team_days
 end

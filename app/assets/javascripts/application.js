@@ -12,5 +12,40 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+
+
+$(window).on('load', function() {
+	init();
+});
+
+function init() {
+	$('.day-status').click(function() {
+		el = $(this);
+		$.post('', {id: $(this)[0].id }, function(data) {
+			el.siblings(".selected").removeClass('selected').addClass('bg-light');
+			el.addClass('selected');
+		})
+	});
+	$('.day-status').hover(
+		function() {
+			if($(this)[0].classList.contains('selected')) {
+				return;
+			};
+			$(this).removeClass('bg-light');
+		},
+		function() {
+			if($(this)[0].classList.contains('selected')) {
+				return;
+			};
+			$(this).addClass('bg-light');
+		}
+	);
+
+	var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+	var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+	  return new bootstrap.Tooltip(tooltipTriggerEl)
+	})
+}

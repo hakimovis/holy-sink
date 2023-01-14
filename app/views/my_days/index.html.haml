@@ -1,7 +1,13 @@
+%h3 Мои выходные
+
 .row
-  .col= link_to "Предыдущий месяц", my_days_path(month: prev_month_year[0], year: prev_month_year[1])
-  .col= "#{month_names[selected_days.first.month]} #{selected_days.first.year}"
-  .col= link_to "Следующий месяц", my_days_path(month: next_month_year[0], year: next_month_year[1])
+  .col.btn
+    - if valid_year?(prev_month_year[1])
+      = link_to "Предыдущий месяц", my_days_path(month: prev_month_year[0], year: prev_month_year[1])
+  .col.btn= "#{month_names[selected_days.first.month]} #{selected_days.first.year}"
+  .col.btn
+    - if valid_year?(next_month_year[1])
+      = link_to "Следующий месяц", my_days_path(month: next_month_year[0], year: next_month_year[1])
 
 .table-responsive
   %table.table
@@ -15,4 +21,9 @@
         %td= date.day
         %td= week_days[date.wday]
         %td
+          - day = user_days[date]
+          .day-status.span.badge.day-working(id="#{day_id(date, :working)}" class="#{css_classes_for(day, :working)}") Работаю
+          .day-status.span.badge.day-free(id="#{day_id(date, :free)}" class="#{css_classes_for(day, :free)}") Отдыхаю
+          .day-status.span.badge.day-things(id="#{day_id(date, :things)}" class="#{css_classes_for(day, :things)}") Занят
+          .day-status.span.badge.day-other(id="#{day_id(date, :other)}" class="#{css_classes_for(day, :other)}") Другое
         %td
