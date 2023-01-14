@@ -24,4 +24,12 @@ class ApplicationController < ActionController::Base
   def require_user!
     redirect_to user_login_index_path unless current_team.present? && current_user.present?
   end
+
+  def redirect_if_team_selected!
+    redirect_to user_login_index_path if current_team.present?
+  end
+
+  def redirect_if_user_logged_in!
+    redirect_to my_days_path if current_user.present?
+  end
 end

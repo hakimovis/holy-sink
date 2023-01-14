@@ -1,4 +1,6 @@
 class TeamLoginController < ApplicationController
+  before_action :redirect_if_team_selected!
+
   def index
   end
 

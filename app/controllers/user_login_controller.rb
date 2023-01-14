@@ -1,6 +1,7 @@
 class UserLoginController < ApplicationController
   helper_method :user, :team_users
   before_action :require_team!
+  before_action :redirect_if_user_logged_in!
 
   def index
   end
