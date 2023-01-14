@@ -1,5 +1,5 @@
 class TeamLoginController < ApplicationController
-  before_action :redirect_if_team_selected!
+  before_action :redirect_if_team_selected!, except: :log_out
 
   def index
   end
@@ -9,8 +9,8 @@ class TeamLoginController < ApplicationController
 
     team_password = selected_team[:password]
 
-    return redirect_to team_login_index_path, alert: "Неправильная команда" unless team_password.present?
-    return redirect_to team_login_index_path, alert: "Неправильный пароль" unless team_password == password
+    return throw_out("Неправильная команда") unless team_password.present?
+    return throw_out("Неправильный пароль") unless password_matches?(password, team_password)
 
     set_current_team(selected_team)
 
@@ -31,5 +31,15 @@ class TeamLoginController < ApplicationController
     set_current_user(nil)
 
     redirect_to team_login_index_path, notice: "Вы вышли"
+  end
+
+  def password_matches?(input, password)
+    puts "valid: #{password}"
+    puts "input: #{Digest::SHA1.hexdigest(input.to_s)}"
+    Digest::SHA1.hexdigest(input.to_s) == password
+  end
+
+  def throw_out(alert)
+    redirect_to team_login_index_path, alert: "Неправильный пароль"
   end
 end

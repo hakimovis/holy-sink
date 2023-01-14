@@ -1,12 +1,12 @@
 .row
-  .col
+  .col-4
     %h3 Выбрать юзера
     .ul
       = team_users.find_each do |user|
         .li
           %a{href: user_login_path(id: user.id) }
             = user.name
-  .col
+  .col-8
     %h3 Вход
     = form_for user, url: '#' do |f|
       .input-group
