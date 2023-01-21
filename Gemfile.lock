@@ -144,6 +144,9 @@ GEM
     importmap-rails (1.1.5)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
+    io-console (0.6.0)
+    irb (1.6.2)
+      reline (>= 0.3.0)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -215,6 +218,8 @@ GEM
       zeitwerk (~> 2.5)
     rake (13.0.6)
     regexp_parser (2.6.1)
+    reline (0.3.2)
+      io-console (~> 0.5)
     rexml (3.2.5)
     rubyzip (2.3.2)
     russian (0.6.0)
@@ -271,6 +276,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   annotate
@@ -281,10 +287,12 @@ DEPENDENCIES
   debug
   haml
   importmap-rails
+  irb
   jbuilder
   jquery-rails
   puma (~> 6.0)
   rails (~> 7.0.4)
+  reline
   russian
   sassc-rails
   selenium-webdriver
