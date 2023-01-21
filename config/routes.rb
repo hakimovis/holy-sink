@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     delete :index, on: :collection, action: :log_out
   end
   resources :user_login
-  resources :my_days
+  resources :my_days do
+    post :comments, action: 'update_comment', on: :collection
+  end
   resources :team_days
 end

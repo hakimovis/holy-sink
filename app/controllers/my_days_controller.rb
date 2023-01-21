@@ -9,15 +9,19 @@ class MyDaysController < ApplicationController
 
   def create
     date, status = parse_day_id(params.require('id'))
-    day = Day.find_or_initialize_by(user: current_user, team_name: current_team[:name], date: date)
-    day.date = date
+    day = user_day(date)
     day.status = status
     day.save!
+
+    head :ok
   end
 
+  def user_day(date)
+    Day.find_or_initialize_by(user: current_user, team_name: current_team[:name], date: date)
+  end
 
   def parse_day_id(day_id)
-    'day-20240108-free'
+    # 'day-20240108-free'
     _, date_str, status = day_id.to_s.split('-')
     date = Date.strptime(date_str, "%Y%m%d")
     [date, status]
@@ -28,5 +32,17 @@ class MyDaysController < ApplicationController
                       for_team(current_team[:name]).
                       for_month(selected_year, selected_month).
                       index_by(&:date)
+  end
+
+  def update_comment
+    date_str = params.require('id').match(/comment\-(\d+)/)[1]
+    return head :not_found unless date_str
+
+    date = Date.strptime(date_str, "%Y%m%d")
+    day = user_day(date)
+    day.comment = params['value'].to_s
+    day.save!
+
+    head :ok
   end
 end

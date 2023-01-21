@@ -11,6 +11,7 @@ end
 # Table name: days
 #
 #  id         :integer          not null, primary key
+#  comment    :string
 #  date       :date
 #  status     :string
 #  team_name  :string

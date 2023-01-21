@@ -25,6 +25,6 @@
             .col
               %h5= date.day
             .col
-              - team_days_by_date.fetch(date, []).each do |days|
+              - team_days_by_date.fetch(date, []).sort_by {|d| d.user.name }.each do |days|
                 - Array.wrap(days).each do |day|
                   = render('shared/day_badge', day: day)

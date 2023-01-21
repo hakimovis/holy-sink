@@ -4,7 +4,7 @@ class Day < ApplicationRecord
   belongs_to :user
 
   validates :date, uniqueness: { scope: :user_id }
-  validates :status, inclusion: { in: STATUSES }
+  validates :status, inclusion: { in: STATUSES, allow_blank: true }
   validates :team_name, presence: true
 
   scope :for_user, -> (user) { where(user: user) }
@@ -45,6 +45,7 @@ end
 # Table name: days
 #
 #  id         :integer          not null, primary key
+#  comment    :string
 #  date       :date
 #  status     :string
 #  team_name  :string

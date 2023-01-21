@@ -47,5 +47,12 @@ function init() {
 	var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 	var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 	  return new bootstrap.Tooltip(tooltipTriggerEl)
+	});
+
+	$('.comment-field').change(function() {
+		el = $(this)[0];
+		id = el.id;
+		value = el.value;
+		$.post('/my_days/comments', {id: id, value: value }, function(data) {})
 	})
 }
