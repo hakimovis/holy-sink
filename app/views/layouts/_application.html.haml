@@ -7,7 +7,7 @@
   %meta(name="viewport" content="width=device-width, initial-scale=1")
   %meta(name="description" content="")
   %meta(name="author" content="")
-  %title HolySink
+  %title Starter Template for Bootstrap
 
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
   = javascript_include_tag 'application'
@@ -24,7 +24,7 @@
           %li.nav-item
             %a.nav-link(aria-current="page" href="#{my_days_path}") Мои выходные
           %li.nav-item
-            %a.nav-link(aria-current="page" href="#{team_days_path}") Общий календарь
+            %a.nav-link(aria-current="page" href="#{team_days_path}") Общий календарь        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
         - if current_team || current_user
           %li.nav-item
             = link_to("Выйти " << (current_user ? "(#{current_user.name})" : ''), team_login_index_path, method: :delete, class: 'nav-link')
