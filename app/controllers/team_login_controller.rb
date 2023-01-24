@@ -34,8 +34,6 @@ class TeamLoginController < ApplicationController
   end
 
   def password_matches?(input, password)
-    puts "valid: #{password}"
-    puts "input: #{Digest::SHA1.hexdigest(input.to_s)}"
     Digest::SHA1.hexdigest(input.to_s) == password
   end
 

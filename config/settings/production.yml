@@ -3,3 +3,7 @@ teams:
     name: default
     title: Теплая вечеринка со смузи
     password: "babef1bc826dbd1c58885f81d6b03ecc28566b94"
+  -
+    name: zagornaya
+    title: Загорная
+    password: "690d1de81b87c71364eac8b461d5c69aa14f152c"
