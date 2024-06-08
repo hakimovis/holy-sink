@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8080:3000"
+    volumes:
+      - ./db:/app/db
+volumes:
+  db:

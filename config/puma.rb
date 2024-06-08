@@ -22,14 +22,14 @@ if env == 'development'
   #
   port ENV.fetch("PORT") { 3000 }
 else
-  bind "unix:///#{project_dir}/tmp/sockets/puma.sock"
+  port ENV.fetch("PORT") { 3000 }
 end
 # Specifies the `environment` that Puma will run in.
 #
 environment env
 
 # Specifies the `pidfile` that Puma will use.
-pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
+pidfile ENV.fetch("PIDFILE") { File.join(project_dir, "tmp/pids/server.pid") }
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked web server processes. If using threads and workers together
