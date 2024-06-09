@@ -1,9 +1,17 @@
 services:
   web:
     build: .
+    restart: always
     ports:
       - "8080:3000"
     volumes:
-      - ./db:/app/db
+      - ./db:/srv/projects/holy-sink/db
+      - ./public:/srv/projects/holy-sink/public_ext
+      - ./log:/srv/projects/holy-sink/log
 volumes:
   db:
+    driver: local
+  public:
+    driver: local
+  log:
+    driver: local
