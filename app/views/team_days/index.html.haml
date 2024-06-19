@@ -11,17 +11,20 @@
 
 %p
 
-.row
+.week-days__grid-container
+  - short_week_days = { "понедельник" => "ПН", "вторник" => "ВТ", "среда" => "СР", "четверг" => "ЧТ", "пятница" => "ПТ", "суббота" => "СБ", "воскресенье" => "ВС" }
   - week_days(mon_first: true).each do |day_name|
-    .col.text-center.border.bg-light
+    .col.text-center.border.bg-light.full-name
       = day_name
+    .col.text-center.border.bg-light.short-name
+      = short_week_days[day_name]
 
 - selected_days_by_weeks.each do |row|
-  .row
+  .week-days__grid-container
     - row.each do |date|
-      .col.border
+      .col.border.date__flex-container
         - if date
-          .row
+          .row.date__container._container
             .col
               %h5= date.day
             .col

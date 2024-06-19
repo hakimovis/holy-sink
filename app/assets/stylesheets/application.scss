@@ -1,6 +1,15 @@
 // @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// block styles
+@import "./block/*";
+
+// element styles
+@import "./element/*";
+
+// Calendar style
+@import "./calendar/*";
+
 .day-working { background-color: $yellow; }
 .day-free { background-color: $green; }
 .day-things { background-color: $gray-500; }
