@@ -1,0 +1,12 @@
+.full-name{
+  @media(max-width: 991px){
+    display: none;
+  }
+}
+
+.short-name{
+  display: none;
+  @media(max-width: 991px){
+    display: block;
+  }
+}
