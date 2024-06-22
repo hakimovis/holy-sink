@@ -1,5 +1,17 @@
 class Day < ApplicationRecord
   STATUSES = ['working', 'free', 'things', 'other']
+  ICONS = {
+            table_games: {tip: "В настолки", char: "🎲"},
+            beer: {tip: "Пить или не пить?", char: "🍺"},
+            hire_house: {tip: "На базу отдыха", char: "🏠"},
+            tent: {tip: "На природу!", char: "🏕️"},
+            beach: {tip: "На речку", char: "🏝️"},
+            car_trip: {tip: "Путешествие", char: "🚗"},
+            rest: {tip: "Валяюсь дома", char: "🛋"},
+            household: {tip: "Домашние дела", char: "🧹"},
+            work: {tip: "Вкалываю", char: "⛏️"},
+            anything: {tip: "Что угодно кроме голодовки", char: "🤩"}
+          }
 
   belongs_to :user
 
@@ -47,6 +59,7 @@ end
 #  id         :integer          not null, primary key
 #  comment    :string
 #  date       :date
+#  icon       :string
 #  status     :string
 #  team_name  :string
 #  created_at :datetime         not null

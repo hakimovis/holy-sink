@@ -13,6 +13,7 @@ end
 #  id         :integer          not null, primary key
 #  comment    :string
 #  date       :date
+#  icon       :string
 #  status     :string
 #  team_name  :string
 #  created_at :datetime         not null

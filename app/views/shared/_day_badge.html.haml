@@ -1,2 +1,5 @@
 %span.badge(data-bs-toggle="tooltip" data-bs-placement="top" class="day-#{day.status}" title="#{day_popup_text(day)}")
-  .fs-8.font-monospace= day.user.name[0].capitalize
+  .fs-8.font-monospace
+  = day.user.name[0].capitalize
+  - if day.icon.present?
+    = Day::ICONS[day.icon.to_sym][:char]

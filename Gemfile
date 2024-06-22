@@ -7,6 +7,7 @@ ruby "3.2.0"
 gem "rails", "~> 7.0.4"
 gem "haml"
 gem 'bootstrap', '~> 5.2.2'
+
 gem 'jquery-rails'
 gem 'config'
 gem 'russian'

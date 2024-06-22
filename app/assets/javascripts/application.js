@@ -24,8 +24,15 @@ $(window).on('load', function() {
 function init() {
 	$('.day-status').click(function() {
 		el = $(this);
-		$.post('', {id: $(this)[0].id }, function(data) {
+		$.post('', {type: 'day_status', id: $(this)[0].id }, function(data) {
 			el.siblings(".selected").removeClass('selected').addClass('bg-light');
+			el.addClass('selected');
+		})
+	});
+	$('.day-icon').click(function() {
+		el = $(this);
+		$.post('', {type: 'day_icon', id: $(this)[0].id }, function(data) {
+			el.siblings(".selected").removeClass('selected');
 			el.addClass('selected');
 		})
 	});
@@ -41,6 +48,20 @@ function init() {
 				return;
 			};
 			$(this).addClass('bg-light');
+		}
+	);
+	$('.day-icon').hover(
+		function() {
+			if($(this)[0].classList.contains('selected')) {
+				return;
+			};
+			$(this).removeClass('gray');
+		},
+		function() {
+			if($(this)[0].classList.contains('selected')) {
+				return;
+			};
+			$(this).addClass('gray');
 		}
 	);
 

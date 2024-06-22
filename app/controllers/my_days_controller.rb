@@ -8,12 +8,31 @@ class MyDaysController < ApplicationController
   end
 
   def create
+    if create_type == :day_status
+      process_create_day_status
+    elsif create_type == :day_icon
+      process_create_day_icon
+    end
+
+    head :ok
+  end
+
+  def create_type
+    params[:type].to_s.to_sym
+  end
+
+  def process_create_day_status
     date, status = parse_day_id(params.require('id'))
     day = user_day(date)
     day.status = status
     day.save!
+  end
 
-    head :ok
+  def process_create_day_icon
+    date, icon = parse_day_id(params.require('id'))
+    day = user_day(date)
+    day.icon = icon.to_s
+    day.save!
   end
 
   def user_day(date)

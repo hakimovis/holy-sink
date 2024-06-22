@@ -16,6 +16,7 @@
         %th(scope="col") Дата
         %th(scope="col") День недели
         %th(scope="col") Статус
+        %th(scope="col") Занятие
         %th(scope="col") Комментарий
     %tbody
       - selected_days.each do |date|
@@ -24,9 +25,12 @@
           %th(scope="row")= week_days[date.wday]
           %td
             - day = user_days[date]
-            .day-status.span.badge.day-working(id="#{day_status_id(date, :working)}" class="#{day_css_classes(day, :working)}") Работаю
-            .day-status.span.badge.day-free(id="#{day_status_id(date, :free)}" class="#{day_css_classes(day, :free)}") Отдыхаю
-            .day-status.span.badge.day-things(id="#{day_status_id(date, :things)}" class="#{day_css_classes(day, :things)}") Занят
-            .day-status.span.badge.day-other(id="#{day_status_id(date, :other)}" class="#{day_css_classes(day, :other)}") Другое
+            .day-status.span.badge.day-working(id="#{day_status_id(date, :working)}" class="#{day_status_css_classes(day, :working)}") Работаю
+            .day-status.span.badge.day-free(id="#{day_status_id(date, :free)}" class="#{day_status_css_classes(day, :free)}") Отдыхаю
+            .day-status.span.badge.day-things(id="#{day_status_id(date, :things)}" class="#{day_status_css_classes(day, :things)}") Занят
+            .day-status.span.badge.day-other(id="#{day_status_id(date, :other)}" class="#{day_status_css_classes(day, :other)}") Другое
+          %td
+            - Day::ICONS.each do |icon_name, data|
+              .day-icon.gray(id="#{day_icon_id(date, icon_name)}" class="#{day_icon_css_classes(day, icon_name)}" title="#{data[:tip]}")= data[:char]
           %td
             %input.comment-field.form-control.form-control-sm(id="#{day_comment_id(date)}" value="#{day&.comment}" maxlength=255)
