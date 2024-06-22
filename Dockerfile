@@ -20,12 +20,12 @@ ENV APP_HOME /srv/projects/holy-sink
 COPY . $APP_HOME
 WORKDIR $APP_HOME
 
-RUN bundle exec rails assets:precompile
-
 # Настройка переменных окружения для production
 ENV PORT 3000
 ENV RAILS_ENV=production \
     RACK_ENV=production
+
+RUN bundle exec rails assets:precompile
 
 RUN mkdir -p ./tmp/pids
 # Проброс порта 3000
