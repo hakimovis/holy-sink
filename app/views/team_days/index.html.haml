@@ -25,7 +25,7 @@
       .col.border.date__flex-container
         - if date
           .row.date__container._container
-            .col
+            .col(class="#{(date == Date.today) ? 'today' : ''}")
               %h5= date.day
             .col
               - team_days_by_date.fetch(date, []).sort_by {|d| d.user.name }.each do |days|

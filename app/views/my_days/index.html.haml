@@ -20,8 +20,9 @@
         %th(scope="col") Комментарий
     %tbody
       - selected_days.each do |date|
+        - is_today = (date == Date.today)
         %tr(class="#{date_css_classes(date)}")
-          %th(scope="row")= date.day
+          %th(scope="row" class="#{is_today ? 'today' : 'not_today'}")= date.day
           %th(scope="row")= week_days[date.wday]
           %td
             - day = user_days[date]
