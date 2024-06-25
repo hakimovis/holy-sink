@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_team, :current_user
+  helper_method :current_team, :current_user, :team_users
 
   def current_team
     session[:current_team]&.symbolize_keys
@@ -31,5 +31,9 @@ class ApplicationController < ActionController::Base
 
   def redirect_if_user_logged_in!
     redirect_to my_days_path if current_user.present?
+  end
+
+  def team_users
+    User.where(team_name: current_team[:name])
   end
 end

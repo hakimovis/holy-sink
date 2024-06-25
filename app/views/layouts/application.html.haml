@@ -25,9 +25,9 @@
             %a.nav-link(aria-current="page" href="#{my_days_path}") Мои выходные
           %li.nav-item
             %a.nav-link(aria-current="page" href="#{team_days_path}") Общий календарь
-        - if current_user && current_user.admin?
-          %li.nav-item
-            %a.nav-link(aria-current="page" href="#{administration_index_path}") Админка
+          - if current_user.admin?
+            %li.nav-item
+              %a.nav-link(aria-current="page" href="#{administration_index_path}") Админка
         - if current_team || current_user
           %li.nav-item
             = link_to("Выйти " << (current_user ? "(#{current_user.name})" : ''), team_login_index_path, method: :delete, class: 'nav-link')
