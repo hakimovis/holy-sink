@@ -1,9 +1,12 @@
-// TODO Разделить кнопку удаления и список пользователей комнаты. Заменить ul или добавить li
 .row
   %h3 Администрирование участников "#{current_team&.fetch(:title)}":
-  %ul
+  %ol
     = team_users.find_each do |user|
-      - if user != current_user
-        = button_to "Выгнать участника #{user.name}!", administration_path(user), method: :delete, data: { confirm: 'Вы уверены, что хотите выгнать этого участника?' }
-      - else 
-        = button_to "Уйти в закат (Покинуть группу)!", administration_path(user), method: :delete, data: { confirm: 'Вы уверены, что хотите покинуть группу?' }
+      %li.border-bottom.mb-3{style: "width: 200px;"}
+        .d-flex.flex-row.align-items-center.justify-content-between.pb-2.w-100
+          .mx-2
+            #{user.name}
+            - if user == current_user
+              (Это Вы)
+          = button_to administration_path(user), data: { confirm: "Вы уверены, что хотите выгнать #{user.name} из группы?" }, method: :delete do
+            %span ❌

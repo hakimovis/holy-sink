@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     User.find_by id: (session[:current_user] || {})['id']
   end
 
+  def team_users
+    User.where(team_name: current_team[:name])
+  end
+
   def set_current_team(team)
     session[:current_team] = team
   end
@@ -31,9 +35,5 @@ class ApplicationController < ActionController::Base
 
   def redirect_if_user_logged_in!
     redirect_to my_days_path if current_user.present?
-  end
-
-  def team_users
-    User.where(team_name: current_team[:name])
   end
 end
