@@ -3,10 +3,12 @@
     display: none;
   }
 }
-
 .short-name{
   display: none;
   @media(max-width: 991px){
     display: block;
   }
+}
+td{
+  cursor: default;
 }

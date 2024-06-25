@@ -23,6 +23,8 @@ class UserLoginController < ApplicationController
     create
   end
 
+
+
   def user
     User.find_or_initialize_by(id: params[:id])
   end

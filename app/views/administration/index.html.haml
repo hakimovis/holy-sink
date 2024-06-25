@@ -1,0 +1,8 @@
+.row
+  %h3 Администрирование участников "#{current_team&.fetch(:title)}":
+  %ul
+    = team_users.find_each do |user|
+      - if user != current_user
+        = button_to "Выгнать участника #{user.name}!", administration_path(user), method: :delete, data: { confirm: 'Вы уверены, что хотите выгнать этого участника?' }
+      - else 
+        = button_to "Уйти в закат (Покинуть группу)!", administration_path(user), method: :delete, data: { confirm: 'Вы уверены, что хотите покинуть группу?' }
