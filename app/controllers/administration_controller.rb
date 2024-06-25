@@ -2,6 +2,7 @@ class AdministrationController < ApplicationController
   helper_method :team_users
   before_action :require_team!
   before_action :require_user!
+
   def index
   end
 

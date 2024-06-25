@@ -1,7 +1,9 @@
 class User < ApplicationRecord
+  has_many :days, dependent: :destroy
+  
   validates :name, presence: true
   validates :team_name, presence: true
-  has_many :days, dependent: :destroy
+
   def admin?
     self == self.class.where(team_name: team_name).order(:created_at).first
   end
