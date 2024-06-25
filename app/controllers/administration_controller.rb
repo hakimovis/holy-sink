@@ -7,7 +7,7 @@ class AdministrationController < ApplicationController
   end
 
   def destroy
-    find_user
+    return unless find_user
     if current_user.admin? && current_user.team_name == @user.team_name
       @user.destroy
       redirect_with_message("Пользователь удален успешно")
@@ -30,6 +30,7 @@ class AdministrationController < ApplicationController
   def find_user
     @user = User.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    @user = nil
+    redirect_with_message("Пользователь не найден")
+    nil
   end
 end
