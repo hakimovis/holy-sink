@@ -1,0 +1,12 @@
+.row
+  %h3 Администрирование участников "#{current_team&.fetch(:title)}":
+  %ol
+    = team_users.find_each do |user|
+      %li.border-bottom.mb-3{style: "width: 200px;"}
+        .d-flex.flex-row.align-items-center.justify-content-between.pb-2.w-100
+          .mx-2
+            #{user.name}
+            - if user == current_user
+              (Это Вы)
+          = button_to administration_path(user), data: { confirm: "Вы уверены, что хотите выгнать #{user.name} из группы?" }, method: :delete do
+            %span ❌

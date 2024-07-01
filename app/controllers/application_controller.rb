@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_team, :current_user
+  helper_method :current_team, :current_user, :team_users
 
   def current_team
     session[:current_team]&.symbolize_keys
@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 
   def current_user
     User.find_by id: (session[:current_user] || {})['id']
+  end
+
+  def team_users
+    User.where(team_name: current_team[:name])
   end
 
   def set_current_team(team)

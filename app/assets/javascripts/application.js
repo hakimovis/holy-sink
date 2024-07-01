@@ -26,7 +26,7 @@ function init() {
 		el = $(this);
 		$.post('', {type: 'day_status', id: $(this)[0].id }, function(data) {
 			el.siblings(".selected").removeClass('selected').addClass('bg-light');
-			el.addClass('selected');
+			el.addClass('selected').removeClass('bg-light');
 		})
 	});
 	$('.day-icon').click(function() {

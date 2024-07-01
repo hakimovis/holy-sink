@@ -1,12 +1,16 @@
-.full-name{
+.full-name {
   @media(max-width: 991px){
     display: none;
   }
 }
 
-.short-name{
+.short-name {
   display: none;
   @media(max-width: 991px){
     display: block;
   }
+}
+
+td {
+  cursor: default;
 }

@@ -1,5 +1,5 @@
 class UserLoginController < ApplicationController
-  helper_method :user, :team_users
+  helper_method :user
   before_action :require_team!
   before_action :redirect_if_user_logged_in!
 
@@ -31,9 +31,10 @@ class UserLoginController < ApplicationController
     params.require(:user).permit(:name)
   end
 
-  def team_users
-    User.where(team_name: current_team[:name])
-  end
+  # Можно вынести этот метод в application_controller?
+  # def team_users
+  #   User.where(team_name: current_team[:name])
+  # end
 
   private
 
